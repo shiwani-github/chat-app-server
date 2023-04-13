@@ -2,7 +2,7 @@ const User = require("../model/User");
 const sha256 = require("js-sha256");
 const jwt = require('jwt-then');
 
-exports.register = async (req, res) => {
+ const register = async (req, res) => {
   const { name, email, password } = req.body;
 
   const emailRegex =
@@ -31,7 +31,7 @@ exports.register = async (req, res) => {
   });
 };
 
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({
@@ -48,3 +48,9 @@ exports.login = async (req, res) => {
     token
   });
 };
+
+
+module.exports = {
+  register, 
+  login
+}
